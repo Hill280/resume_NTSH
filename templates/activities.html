@@ -1,47 +1,103 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ask a Question</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-        section {
-            margin: 20px;
-        }
-        .form-box {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>課外活動</h1>
-    </header>
-    <section>
-        <div class="form-box">
-            <form action="/activities" method="post">
-                <label for="question">你的問題:</label><br>
-                <input type="text" id="question" name="question" value="{{ question }}"><br><br>
-                <label for="answer">答案:</label><br>
-                <input type="text" id="answer" name="answer" readonly value="{{ answer }}"><br><br>
-                <input type="submit" value="送出">
-                <input type="button" value="回首頁" onclick="window.location.href='/'">
-            </form>
+<header>
+    <h1>課外活動</h1>
+    <p>探索興趣、培養能力，享受豐富的校園生活</p>
+</header>
+
+<section>
+
+    <div class="intro">
+        <h2>豐富多元的課外活動</h2>
+        <p>
+            課外活動是學習之外的重要體驗。透過參加不同的社團與活動，
+            不但可以培養自己的興趣，也能學習團隊合作、溝通與解決問題的能力。
+            歡迎同學依照自己的興趣，選擇適合自己的活動！
+        </p>
+    </div>
+
+    <div class="activities">
+
+        <div class="activity-card">
+            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80"
+                 alt="籃球活動">
+            <div class="activity-content">
+                <h3>🏀 籃球社</h3>
+                <p>
+                    喜歡運動的同學可以加入籃球社，透過平時的練習與比賽，
+                    培養體能、團隊合作能力，也能認識許多志同道合的朋友。
+                </p>
+            </div>
         </div>
-    </section>
-</body>
-</html>
+
+        <div class="activity-card">
+            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80"
+                 alt="美術活動">
+            <div class="activity-content">
+                <h3>🎨 美術社</h3>
+                <p>
+                    美術社提供自由創作的空間，同學可以學習繪畫、設計與不同的藝術技巧，
+                    發揮自己的創意，完成屬於自己的作品。
+                </p>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=800&q=80"
+                 alt="音樂活動">
+            <div class="activity-content">
+                <h3>🎵 音樂社</h3>
+                <p>
+                    音樂社適合喜歡唱歌或演奏樂器的同學。
+                    透過團體練習與舞台表演，可以提升音樂能力與自信心。
+                </p>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+                 alt="團隊活動">
+            <div class="activity-content">
+                <h3>🤝 志工服務</h3>
+                <p>
+                    參加志工活動可以學習關懷他人與服務社會，
+                    同時培養責任感與溝通能力，讓課外時間變得更有意義。
+                </p>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
+                 alt="資訊社團">
+            <div class="activity-content">
+                <h3>💻 資訊社</h3>
+                <p>
+                    喜歡電腦與科技的同學可以學習程式設計、網頁製作與數位工具，
+                    透過實際作品培養資訊能力與創意思考。
+                </p>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80"
+                 alt="社團交流活動">
+            <div class="activity-content">
+                <h3>🌟 社團交流</h3>
+                <p>
+                    參加不同社團能認識來自不同班級的同學，
+                    透過共同興趣建立友誼，也能累積合作與溝通的經驗。
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="button-area">
+        <a href="/" class="home-button">回首頁</a>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 課外活動專區</p>
+</footer>
+
+</body> </html>
