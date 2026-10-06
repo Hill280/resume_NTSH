@@ -1,0 +1,305 @@
+鳴潮.html
+
+
+<!DOCTYPE html> <html lang="zh-Hant"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>鳴潮｜Wuthering Waves</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        background: linear-gradient(135deg, #07111f, #101d35, #17112b);
+        color: #ffffff;
+        line-height: 1.8;
+    }
+
+    header {
+        min-height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 50px 20px;
+        background:
+            linear-gradient(rgba(4, 12, 25, 0.55), rgba(10, 8, 30, 0.85)),
+            url("https://image.api.playstation.com/vulcan/ap/rnd/202405/2210/7c7f1c3a5c7e0c5f0d4e7b8d4f9e9f1e3f8f8e4f.png")
+            center / cover;
+    }
+
+    header h1 {
+        font-size: 5rem;
+        letter-spacing: 15px;
+        color: #8de8ff;
+        text-shadow: 0 0 20px #38cfff;
+    }
+
+    header p {
+        margin-top: 20px;
+        font-size: 1.3rem;
+        color: #d9f7ff;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    section {
+        padding: 70px 0;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2.3rem;
+        margin-bottom: 40px;
+        color: #8de8ff;
+        text-shadow: 0 0 10px rgba(80, 210, 255, 0.5);
+    }
+
+    .intro {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(130,220,255,0.2);
+        border-radius: 20px;
+        padding: 35px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .intro p {
+        font-size: 1.1rem;
+        color: #e4edf5;
+    }
+
+    .features {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .card {
+        padding: 30px;
+        background: linear-gradient(
+            145deg,
+            rgba(69, 177, 255, 0.12),
+            rgba(144, 83, 255, 0.08)
+        );
+        border: 1px solid rgba(120, 220, 255, 0.2);
+        border-radius: 18px;
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        border-color: #72ddff;
+        box-shadow: 0 10px 30px rgba(60, 190, 255, 0.2);
+    }
+
+    .card h3 {
+        color: #78dcff;
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+
+    .card p {
+        color: #d6e1eb;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .gallery img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 2px solid rgba(120,220,255,0.25);
+        box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+        transition: 0.4s;
+    }
+
+    .gallery img:hover {
+        transform: scale(1.03);
+        border-color: #76e4ff;
+        box-shadow: 0 0 30px rgba(72,205,255,0.35);
+    }
+
+    .world {
+        text-align: center;
+        padding: 40px;
+        border-radius: 20px;
+        background: linear-gradient(
+            135deg,
+            rgba(50,170,230,0.12),
+            rgba(120,60,230,0.12)
+        );
+    }
+
+    .world p {
+        max-width: 800px;
+        margin: auto;
+        color: #dce8f0;
+        font-size: 1.05rem;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px 20px;
+        background: #050a13;
+        color: #8293a5;
+        font-size: 0.9rem;
+    }
+
+    footer a {
+        color: #78dcff;
+        text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+        header {
+            min-height: 55vh;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            letter-spacing: 8px;
+        }
+
+        .features,
+        .gallery {
+            grid-template-columns: 1fr;
+        }
+
+        .gallery img {
+            height: 250px;
+        }
+    }
+</style>
+
+</head> <body>
+<!-- 首頁 -->
+<header>
+    <div>
+        <h1>鳴潮</h1>
+        <p>WUTHERING WAVES</p>
+        <p>在災厄餘音中，踏上屬於你的旅途。</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- 遊戲介紹 -->
+    <section>
+        <h2>關於鳴潮</h2>
+
+        <div class="intro">
+            <p>
+                《鳴潮》是一款由 KURO GAMES 開發的跨平台開放世界動作遊戲。
+                玩家將在名為「索拉里斯」的世界中，以「漂泊者」的身分甦醒，
+                展開尋找記憶與探索世界真相的旅程。
+            </p>
+
+            <br>
+
+            <p>
+                遊戲結合了開放世界探索、高自由度移動以及高速動作戰鬥。
+                玩家可以在廣大的世界中探索環境、結識各式各樣的「共鳴者」，
+                並與夥伴一起對抗未知的敵人。
+            </p>
+        </div>
+    </section>
+
+    <!-- 遊戲特色 -->
+    <section>
+        <h2>遊戲特色</h2>
+
+        <div class="features">
+
+            <div class="card">
+                <h3>🌌 開放世界探索</h3>
+                <p>
+                    在索拉里斯自由探索，可以進行跑酷、蹬牆、
+                    翱翔等高機動移動，探索城市、荒野與各種神秘區域。
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>⚔️ 高速動作戰鬥</h3>
+                <p>
+                    遊戲強調流暢的戰鬥節奏，可以使用極限閃避、
+                    逆勢回擊、聲骸協戰等戰鬥機制。
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🎵 沉浸式世界</h3>
+                <p>
+                    透過音樂、動畫與劇情演出，呈現一個經歷災厄後
+                    正重新建立文明的世界。
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>👥 共鳴者夥伴</h3>
+                <p>
+                    冒險過程中可以遇見許多個性與能力不同的共鳴者，
+                    與他們並肩作戰並探索未知的未來。
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 世界觀 -->
+    <section>
+        <h2>索拉里斯世界</h2>
+
+        <div class="world">
+            <p>
+                「悲鳴」曾經降臨這個世界，舊有的文明因此受到巨大衝擊。
+                然而，在毀滅與沉寂之後，也出現了新的力量與新的生命。
+                漂泊者將在這片陌生的大地上醒來，逐步找回自己的記憶，
+                並揭開隱藏在世界背後的真相。
+            </p>
+        </div>
+    </section>
+
+    <!-- 圖片 -->
+    <section>
+        <h2>遊戲世界</h2>
+
+        <div class="gallery">
+
+            <img
+                src="https://image.api.playstation.com/vulcan/ap/rnd/202405/2210/7c7f1c3a5c7e0c5f0d4e7b8d4f9e9f1e3f8f8e4f.png"
+                alt="鳴潮遊戲世界截圖"
+            >
+
+            <img
+                src="https://image.api.playstation.com/vulcan/ap/rnd/202405/2210/8f7f5d6c3e9c5b8e1f2d4a7c9b3e6f8a.png"
+                alt="鳴潮開放世界截圖"
+            >
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>
+        《鳴潮》Wuthering Waves｜
+        <a href="https://wutheringwaves.kurogames.com/zh-tw/" target="_blank">
+            官方網站
+        </a>
+    </p>
+
+    <p>© KURO GAMES. All Rights Reserved.</p>
+</footer>
+
+</body> </html>
+以上內容是依照官方資料整理，《鳴潮》主打開放世界探索、高機動動作戰鬥與共
