@@ -103,6 +103,10 @@ def electives():
 def ai():
     return render_template('ai.html')
 
+@app.route('/鳴潮')
+def 鳴潮():
+    return render_template('鳴潮.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
