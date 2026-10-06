@@ -1,802 +1,701 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
+<!DOCTYPE html> <html lang="zh-Hant"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>鳴潮 Wuthering Waves｜遊戲介紹</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    html {
+        scroll-behavior: smooth;
+    }
 
-    <title>鳴潮｜Wuthering Waves</title>
+    body {
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        background: #071017;
+        color: #f4f7f8;
+        line-height: 1.8;
+    }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    /* 導覽列 */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: rgba(5, 12, 18, 0.88);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(120, 220, 255, 0.15);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 7%;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        color: #8beaff;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+    }
+
+    nav a {
+        color: #dce9ed;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    nav a:hover {
+        color: #7de8ff;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 100px 20px 60px;
+        position: relative;
+        overflow: hidden;
+
+        background:
+            radial-gradient(circle at 50% 45%, rgba(49, 174, 212, 0.25), transparent 35%),
+            linear-gradient(135deg, #071017, #102b35 55%, #071017);
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border: 1px solid rgba(105, 226, 255, 0.2);
+        border-radius: 50%;
+        animation: rotate 20s linear infinite;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .subtitle {
+        color: #7eeaff;
+        letter-spacing: 8px;
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+
+    .hero h1 {
+        font-size: clamp(60px, 12vw, 140px);
+        letter-spacing: 20px;
+        margin-left: 20px;
+        text-shadow:
+            0 0 15px rgba(104, 231, 255, 0.7),
+            0 0 50px rgba(104, 231, 255, 0.3);
+    }
+
+    .english-title {
+        font-size: 22px;
+        letter-spacing: 8px;
+        color: #b8d9df;
+        margin-bottom: 30px;
+    }
+
+    .hero p {
+        max-width: 650px;
+        margin: auto;
+        color: #c9d9dd;
+        font-size: 17px;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-top: 35px;
+        padding: 13px 35px;
+        border: 1px solid #75eaff;
+        color: #8beaff;
+        text-decoration: none;
+        transition: 0.3s;
+        background: rgba(73, 201, 231, 0.08);
+    }
+
+    .btn:hover {
+        background: #75eaff;
+        color: #071017;
+        box-shadow: 0 0 30px rgba(117, 234, 255, 0.5);
+    }
+
+    /* 通用區塊 */
+    section {
+        padding: 100px 8%;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 55px;
+    }
+
+    .section-title span {
+        color: #73e5ff;
+        font-size: 14px;
+        letter-spacing: 5px;
+    }
+
+    .section-title h2 {
+        font-size: 42px;
+        margin-top: 8px;
+    }
+
+    .section-title p {
+        color: #91a8ae;
+        margin-top: 10px;
+    }
+
+    /* 遊戲介紹 */
+    .intro {
+        background: linear-gradient(180deg, #071017, #0b1b22);
+    }
+
+    .intro-box {
+        max-width: 1000px;
+        margin: auto;
+        padding: 45px;
+        background: rgba(255,255,255,0.035);
+        border-left: 3px solid #65dcf8;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+    }
+
+    .intro-box p {
+        color: #c7d4d7;
+        font-size: 17px;
+        margin-bottom: 20px;
+    }
+
+    .quote {
+        color: #7ce7ff;
+        font-size: 24px;
+        text-align: center;
+        margin: 30px 0;
+    }
+
+    /* 特色卡片 */
+    .features {
+        background: #09151c;
+    }
+
+    .cards {
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .card {
+        min-height: 260px;
+        padding: 30px 25px;
+        background: linear-gradient(145deg, #112832, #09161c);
+        border: 1px solid rgba(120, 225, 255, 0.12);
+        transition: 0.35s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card::after {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: rgba(81, 220, 255, 0.08);
+        border-radius: 50%;
+        right: -40px;
+        top: -40px;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(120, 225, 255, 0.6);
+        box-shadow: 0 15px 40px rgba(44, 205, 241, 0.12);
+    }
+
+    .icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .card h3 {
+        color: #8beaff;
+        margin-bottom: 10px;
+        font-size: 22px;
+    }
+
+    .card p {
+        color: #a9bbc0;
+        font-size: 15px;
+    }
+
+    /* 世界觀 */
+    .world {
+        background:
+            radial-gradient(circle at 80% 20%, rgba(50, 184, 220, 0.12), transparent 30%),
+            #071017;
+    }
+
+    .world-content {
+        max-width: 1100px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+    }
+
+    .world-text h3 {
+        font-size: 30px;
+        margin-bottom: 20px;
+        color: #e5f8fb;
+    }
+
+    .world-text p {
+        color: #aebfc4;
+        margin-bottom: 20px;
+    }
+
+    .world-image {
+        height: 400px;
+        border: 1px solid rgba(122, 227, 255, 0.25);
+        background:
+            linear-gradient(rgba(8,20,27,.35), rgba(8,20,27,.7)),
+            radial-gradient(circle at 60% 40%, #4a8e9e, #112a34 45%, #071017 80%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .world-image::before {
+        content: "SOLARIS-3";
+        position: absolute;
+        font-size: 55px;
+        letter-spacing: 10px;
+        color: rgba(180, 241, 255, 0.1);
+    }
+
+    /* 戰鬥 */
+    .battle {
+        background: #0a171e;
+    }
+
+    .battle-list {
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .battle-item {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+        padding: 25px;
+        margin-bottom: 15px;
+        background: rgba(255,255,255,0.035);
+        border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .number {
+        min-width: 55px;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #68ddfa;
+        color: #68ddfa;
+        font-size: 20px;
+    }
+
+    .battle-item h3 {
+        color: #e6f9fc;
+    }
+
+    .battle-item p {
+        color: #9fb2b8;
+        font-size: 15px;
+    }
+
+    /* 平台 */
+    .platform {
+        text-align: center;
+        background: linear-gradient(180deg, #071017, #0d242d);
+    }
+
+    .platform-list {
+        max-width: 850px;
+        margin: 30px auto;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .platform-item {
+        padding: 15px 30px;
+        border: 1px solid rgba(119, 226, 255, 0.25);
+        background: rgba(255,255,255,0.03);
+        color: #cde1e5;
+    }
+
+    /* Footer */
+    footer {
+        padding: 40px 20px;
+        text-align: center;
+        background: #050b0f;
+        color: #71868c;
+        font-size: 14px;
+    }
+
+    footer strong {
+        color: #80e6ff;
+    }
+
+    /* 動畫 */
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
         }
-
-        html {
-            scroll-behavior: smooth;
+        to {
+            transform: rotate(360deg);
         }
+    }
 
-        body {
-            font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif;
-            background: #07101c;
-            color: white;
-            line-height: 1.8;
-        }
-
-        /* 導覽列 */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 15px 8%;
-
-            background: rgba(3, 10, 20, 0.85);
-            backdrop-filter: blur(12px);
-
-            border-bottom: 1px solid rgba(100, 210, 255, 0.25);
-        }
-
-        nav .logo {
-            font-size: 25px;
-            font-weight: bold;
-            letter-spacing: 5px;
-            color: #7de4ff;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        nav a {
-            color: #e9f8ff;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #65dcff;
-            text-shadow: 0 0 10px #65dcff;
-        }
-
-        /* 首頁 */
-        .hero {
-            height: 100vh;
-            min-height: 650px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            text-align: center;
-
-            background:
-                linear-gradient(
-                    rgba(3, 12, 25, 0.35),
-                    rgba(3, 12, 25, 0.9)
-                ),
-                url("https://wutheringwaves.kurogames.com/zh-tw/") center/cover;
-
-            position: relative;
-        }
-
-        .hero-content {
-            padding: 30px;
-        }
-
-        .hero h1 {
-            font-size: 90px;
-            letter-spacing: 25px;
-
-            color: white;
-
-            text-shadow:
-                0 0 10px #62dfff,
-                0 0 30px #298aff,
-                0 0 70px #174dff;
-
-            margin-bottom: 10px;
-        }
-
-        .english {
-            font-size: 22px;
-            letter-spacing: 8px;
-            color: #9edfff;
-        }
-
-        .hero-description {
-            margin-top: 25px;
-            font-size: 20px;
-            color: #d8edf7;
-        }
-
-        .btn {
-            display: inline-block;
-
-            margin-top: 35px;
-            padding: 12px 35px;
-
-            border: 1px solid #62dcff;
-            border-radius: 30px;
-
-            color: white;
-            text-decoration: none;
-
-            background: rgba(40, 180, 230, 0.15);
-
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #55d7ff;
-            color: #06101b;
-
-            box-shadow:
-                0 0 15px #55d7ff,
-                0 0 40px #227dff;
-        }
-
-        /* 共用區域 */
-        section {
-            max-width: 1150px;
-            margin: auto;
-            padding: 100px 25px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 55px;
-        }
-
-        .section-title h2 {
-            font-size: 42px;
-            color: #76ddff;
-
-            text-shadow: 0 0 15px rgba(80, 210, 255, 0.4);
-        }
-
-        .section-title p {
-            margin-top: 5px;
-            color: #8199ad;
-        }
-
-        /* 遊戲介紹 */
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .about-text {
-            background: rgba(255, 255, 255, 0.045);
-
-            padding: 35px;
-
-            border-left: 3px solid #5edaff;
-            border-radius: 10px;
-
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-        }
-
-        .about-text p {
-            color: #d0dee8;
-            margin-bottom: 18px;
-        }
-
-        .info-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .info {
-            padding: 25px;
-
-            background: linear-gradient(
-                135deg,
-                rgba(65, 180, 230, 0.12),
-                rgba(80, 60, 180, 0.1)
-            );
-
-            border: 1px solid rgba(100, 220, 255, 0.2);
-            border-radius: 15px;
-        }
-
-        .info h3 {
-            color: #70dcff;
-            margin-bottom: 5px;
-        }
-
-        .info p {
-            color: #c7d7e3;
-        }
-
-        /* 特色 */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .feature-card {
-            padding: 35px 25px;
-
-            text-align: center;
-
-            background: rgba(255, 255, 255, 0.05);
-
-            border: 1px solid rgba(110, 215, 255, 0.18);
-            border-radius: 18px;
-
-            transition: 0.4s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-
-            border-color: #65ddff;
-
-            box-shadow:
-                0 10px 40px rgba(40, 180, 255, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h3 {
-            color: #72dcff;
-            font-size: 23px;
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            color: #bacbd8;
-        }
-
-        /* 世界觀 */
-        .world {
-            background:
-                linear-gradient(
-                    rgba(5, 15, 28, 0.88),
-                    rgba(5, 15, 28, 0.95)
-                );
+    /* RWD */
+    @media (max-width: 900px) {
+        .cards {
+            grid-template-columns: repeat(2, 1fr);
         }
 
         .world-content {
-            max-width: 850px;
-            margin: auto;
-
-            text-align: center;
-
-            padding: 50px;
-
-            border-radius: 20px;
-
-            background: rgba(255, 255, 255, 0.045);
-            border: 1px solid rgba(100, 215, 255, 0.2);
+            grid-template-columns: 1fr;
         }
 
-        .world-content h3 {
-            font-size: 30px;
-            color: #77ddff;
-            margin-bottom: 20px;
+        nav ul {
+            display: none;
+        }
+    }
+
+    @media (max-width: 600px) {
+        section {
+            padding: 70px 5%;
         }
 
-        .world-content p {
-            color: #ccdce7;
-            font-size: 18px;
+        .cards {
+            grid-template-columns: 1fr;
         }
 
-        /* 圖片 */
-        .gallery {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
+        .hero h1 {
+            letter-spacing: 10px;
         }
 
-        .gallery img {
-            width: 100%;
-            height: 350px;
-
-            object-fit: cover;
-
-            border-radius: 18px;
-
-            border: 1px solid rgba(100, 215, 255, 0.25);
-
-            transition: 0.4s;
+        .intro-box {
+            padding: 25px;
         }
 
-        .gallery img:hover {
-            transform: scale(1.03);
-
-            box-shadow:
-                0 0 30px rgba(70, 210, 255, 0.35);
+        .world-image {
+            height: 280px;
         }
 
-        /* 角色 */
-        .characters {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+        .battle-item {
+            align-items: flex-start;
         }
+    }
+</style>
 
-        .character {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 18px;
-            overflow: hidden;
+</head> <body>
+<!-- 導覽列 -->
+<nav>
+    <div class="logo">WUTHERING WAVES</div>
 
-            border: 1px solid rgba(100, 210, 255, 0.15);
-
-            transition: 0.3s;
-        }
-
-        .character:hover {
-            transform: translateY(-8px);
-            border-color: #60ddff;
-        }
-
-        .character-image {
-            height: 220px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #142e47,
-                    #262052
-                );
-
-            font-size: 70px;
-        }
-
-        .character-text {
-            padding: 22px;
-        }
-
-        .character-text h3 {
-            color: #75ddff;
-            margin-bottom: 5px;
-        }
-
-        .character-text p {
-            color: #b8cbd8;
-        }
-
-        /* 頁尾 */
-        footer {
-            padding: 45px 20px;
-
-            text-align: center;
-
-            background: #030913;
-
-            border-top: 1px solid rgba(100, 215, 255, 0.15);
-
-            color: #73899a;
-        }
-
-        footer strong {
-            color: #73dcff;
-        }
-
-        /* 手機版 */
-        @media (max-width: 800px) {
-
-            nav {
-                padding: 15px 20px;
-            }
-
-            nav ul {
-                gap: 10px;
-                font-size: 13px;
-            }
-
-            .hero h1 {
-                font-size: 55px;
-                letter-spacing: 10px;
-            }
-
-            .hero-description {
-                font-size: 16px;
-            }
-
-            .about {
-                grid-template-columns: 1fr;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .characters {
-                grid-template-columns: 1fr;
-            }
-
-            .info-box {
-                grid-template-columns: 1fr;
-            }
-
-            .world-content {
-                padding: 30px 20px;
-            }
-        }
-    </style>
-</head>
+    <ul>
+        <li><a href="#intro">遊戲介紹</a></li>
+        <li><a href="#features">遊戲特色</a></li>
+        <li><a href="#world">世界觀</a></li>
+        <li><a href="#battle">戰鬥系統</a></li>
+        <li><a href="#platform">遊戲平台</a></li>
+    </ul>
+</nav>
 
 
-<body>
+<!-- 首頁 -->
+<header class="hero">
+    <div class="hero-content">
+        <div class="subtitle">WUTHERING WAVES</div>
 
-    <!-- 導覽列 -->
-    <nav>
+        <h1>鳴潮</h1>
 
-        <div class="logo">
-            鳴潮
+        <div class="english-title">
+            WUTHERING WAVES
         </div>
 
-        <ul>
-            <li>
-                <a href="#about">遊戲介紹</a>
-            </li>
+        <p>
+            在悲鳴之後甦醒的世界，
+            漂泊者將踏上尋找記憶與真相的旅程。
+            探索廣闊的索拉里斯，與共鳴者並肩作戰，
+            在潮聲之中揭開世界的秘密。
+        </p>
 
-            <li>
-                <a href="#features">遊戲特色</a>
-            </li>
-
-            <li>
-                <a href="#world">世界觀</a>
-            </li>
-
-            <li>
-                <a href="#gallery">遊戲圖片</a>
-            </li>
-        </ul>
-
-    </nav>
+        <a class="btn" href="#intro">
+            開始探索
+        </a>
+    </div>
+</header>
 
 
-    <!-- 首頁 -->
-    <header class="hero">
+<!-- 遊戲介紹 -->
+<section class="intro" id="intro">
 
-        <div class="hero-content">
+    <div class="section-title">
+        <span>ABOUT THE GAME</span>
+        <h2>關於《鳴潮》</h2>
+        <p>一場發生在災厄之後的旅程</p>
+    </div>
 
-            <h1>鳴潮</h1>
+    <div class="intro-box">
 
-            <div class="english">
-                WUTHERING WAVES
-            </div>
+        <p>
+            《鳴潮》是一款由 KURO GAMES 開發的跨平台開放世界動作遊戲。
+            玩家將以「漂泊者」的身分，在名為「索拉里斯」的世界中醒來，
+            並逐步尋找自己的記憶與身分。
+        </p>
 
-            <p class="hero-description">
-                開放世界動作遊戲
-                ・
-                高自由度探索
-                ・
-                高速戰鬥
+        <div class="quote">
+            「潮聲循環往復，文明再度啟程。」
+        </div>
+
+        <p>
+            遊戲結合開放世界探索、角色養成以及高速動作戰鬥。
+            玩家可以自由探索世界、攀爬與跑酷、滑翔，
+            也能利用各種角色的能力與聲骸，在戰鬥中組成自己的隊伍。
+        </p>
+
+        <p>
+            隨著旅程深入，漂泊者將遇見不同的「共鳴者」，
+            每個角色都有自己的故事、戰鬥風格與能力，
+            一同揭開「悲鳴」之後所留下的謎團。
+        </p>
+
+    </div>
+</section>
+
+
+<!-- 遊戲特色 -->
+<section class="features" id="features">
+
+    <div class="section-title">
+        <span>GAME FEATURES</span>
+        <h2>遊戲特色</h2>
+        <p>自由探索、流暢戰鬥與豐富角色</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">🌌</div>
+            <h3>開放世界</h3>
+            <p>
+                探索廣大的索拉里斯世界。
+                利用跑酷、攀爬、滑翔等方式，
+                自由前往不同地區。
             </p>
-
-            <a href="#about" class="btn">
-                開始探索
-            </a>
-
         </div>
 
-    </header>
-
-
-    <!-- 遊戲介紹 -->
-    <section id="about">
-
-        <div class="section-title">
-
-            <h2>遊戲介紹</h2>
-
-            <p>Wuthering Waves</p>
-
+        <div class="card">
+            <div class="icon">⚔️</div>
+            <h3>高速戰鬥</h3>
+            <p>
+                以極限閃避、逆勢回擊等機制，
+                搭配不同角色技能，
+                享受快速且具有打擊感的戰鬥。
+            </p>
         </div>
 
-
-        <div class="about">
-
-            <div class="about-text">
-
-                <p>
-                    《鳴潮》是由 KURO GAMES 開發的跨平台開放世界動作遊戲。
-                    玩家將在一個經歷「悲鳴」後的世界中甦醒，
-                    並以「漂泊者」的身分展開自己的旅程。
-                </p>
-
-                <p>
-                    在探索索拉里斯的過程中，玩家會遇到各式各樣的共鳴者，
-                    與他們一起對抗危險的敵人、探索未知區域，
-                    同時逐漸找回自己的記憶與身分。
-                </p>
-
-                <p>
-                    遊戲最大的特色之一就是高速且流暢的動作戰鬥，
-                    搭配自由探索、角色養成與豐富劇情，
-                    打造充滿冒險感的開放世界體驗。
-                </p>
-
-            </div>
-
-
-            <div class="info-box">
-
-                <div class="info">
-                    <h3>遊戲類型</h3>
-                    <p>開放世界動作 RPG</p>
-                </div>
-
-                <div class="info">
-                    <h3>開發商</h3>
-                    <p>KURO GAMES</p>
-                </div>
-
-                <div class="info">
-                    <h3>遊戲模式</h3>
-                    <p>單人冒險</p>
-                </div>
-
-                <div class="info">
-                    <h3>遊戲平台</h3>
-                    <p>PC、手機、PlayStation 5、Mac</p>
-                </div>
-
-            </div>
-
+        <div class="card">
+            <div class="icon">👻</div>
+            <h3>聲骸系統</h3>
+            <p>
+                收集並使用聲骸，
+                將其能力融入戰鬥，
+                建立屬於自己的戰鬥配置。
+            </p>
         </div>
 
-    </section>
-
-
-    <!-- 遊戲特色 -->
-    <section id="features">
-
-        <div class="section-title">
-
-            <h2>遊戲特色</h2>
-
-            <p>探索、戰鬥與冒險</p>
-
+        <div class="card">
+            <div class="icon">✨</div>
+            <h3>共鳴者</h3>
+            <p>
+                認識各具特色的共鳴者，
+                每位角色都有獨特的故事、
+                屬性與戰鬥方式。
+            </p>
         </div>
 
-
-        <div class="features">
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    🌎
-                </div>
-
-                <h3>開放世界</h3>
-
-                <p>
-                    探索索拉里斯的廣大世界，
-                    可以奔跑、攀爬、滑翔，
-                    以不同方式前往未知的地方。
-                </p>
-
-            </div>
+    </div>
+</section>
 
 
-            <div class="feature-card">
+<!-- 世界觀 -->
+<section class="world" id="world">
 
-                <div class="feature-icon">
-                    ⚔️
-                </div>
+    <div class="section-title">
+        <span>WORLD OF SOLARIS</span>
+        <h2>索拉里斯世界</h2>
+        <p>文明在災厄之後重新開始</p>
+    </div>
 
-                <h3>高速戰鬥</h3>
+    <div class="world-content">
 
-                <p>
-                    使用普通攻擊、技能、
-                    極限閃避與反擊，
-                    體驗快速流暢的動作戰鬥。
-                </p>
+        <div class="world-text">
 
-            </div>
-
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    🎵
-                </div>
-
-                <h3>沉浸劇情</h3>
-
-                <p>
-                    透過角色故事、音樂與動畫演出，
-                    一步步了解這個世界以及角色們的故事。
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- 世界觀 -->
-    <section id="world" class="world">
-
-        <div class="section-title">
-
-            <h2>索拉里斯世界</h2>
-
-            <p>文明於災厄之後重新啟程</p>
-
-        </div>
-
-
-        <div class="world-content">
-
-            <h3>「漂泊者，你的旅程才剛剛開始。」</h3>
+            <h3>悲鳴之後，新的世界誕生</h3>
 
             <p>
-                在《鳴潮》的世界中，一場名為「悲鳴」的災難
-                改變了人類文明。
-                災厄帶來了未知的異象，
-                而倖存的人類也開始與這個全新的世界共存。
+                《鳴潮》的故事發生在經歷「悲鳴」災厄後的世界。
+                舊有文明受到巨大的衝擊，
+                人類開始面對全新的環境與未知力量。
             </p>
-
-            <br>
 
             <p>
-                玩家將扮演失去記憶的「漂泊者」，
-                在旅途中認識不同的共鳴者，
-                對抗強大的敵人，
-                並尋找自己過去的真相。
+                漂泊者在陌生的世界中甦醒，
+                對自己的過去一無所知。
+                隨著與其他共鳴者相遇，
+                一段尋找記憶、探索真相的冒險正式展開。
+            </p>
+
+            <p>
+                這個世界既有荒野、城市與遺跡，
+                也存在著許多未知的敵人與神秘力量。
+                玩家可以在探索過程中逐步了解索拉里斯的歷史。
             </p>
 
         </div>
 
-    </section>
-
-
-    <!-- 遊戲圖片 -->
-    <section id="gallery">
-
-        <div class="section-title">
-
-            <h2>遊戲圖片</h2>
-
-            <p>欣賞索拉里斯的風景</p>
-
+        <div class="world-image">
         </div>
 
+    </div>
 
-        <div class="gallery">
-
-            <img
-                src="https://www.playstation.com/content/dam/global_pod_assets/games/w/wuthering-waves/1.jpg"
-                alt="鳴潮遊戲畫面"
-            >
-
-            <img
-                src="https://www.playstation.com/content/dam/global_pod_assets/games/w/wuthering-waves/2.jpg"
-                alt="鳴潮世界景色"
-            >
-
-        </div>
-
-    </section>
+</section>
 
 
-    <!-- 角色 -->
-    <section>
+<!-- 戰鬥系統 -->
+<section class="battle" id="battle">
 
-        <div class="section-title">
+    <div class="section-title">
+        <span>ACTION COMBAT</span>
+        <h2>戰鬥系統</h2>
+        <p>掌握節奏，在瞬間做出決定</p>
+    </div>
 
-            <h2>共鳴者</h2>
+    <div class="battle-list">
 
-            <p>與夥伴一起踏上旅途</p>
-
-        </div>
-
-
-        <div class="characters">
-
-            <div class="character">
-
-                <div class="character-image">
-                    🧑
-                </div>
-
-                <div class="character-text">
-
-                    <h3>漂泊者</h3>
-
-                    <p>
-                        玩家所扮演的主角，
-                        在索拉里斯甦醒後開始尋找自己的記憶。
-                    </p>
-
-                </div>
-
+        <div class="battle-item">
+            <div class="number">01</div>
+            <div>
+                <h3>極限閃避</h3>
+                <p>
+                    在敵人攻擊的瞬間進行閃避，
+                    抓住短暫的機會反擊。
+                </p>
             </div>
-
-
-            <div class="character">
-
-                <div class="character-image">
-                    ⚡
-                </div>
-
-                <div class="character-text">
-
-                    <h3>共鳴者</h3>
-
-                    <p>
-                        擁有不同能力與個性的角色，
-                        可以與漂泊者一同冒險。
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="character">
-
-                <div class="character-image">
-                    👾
-                </div>
-
-                <div class="character-text">
-
-                    <h3>聲骸</h3>
-
-                    <p>
-                        探索世界時可以接觸到的特殊存在，
-                        並能在戰鬥中提供不同的能力。
-                    </p>
-
-                </div>
-
-            </div>
-
         </div>
 
-    </section>
+        <div class="battle-item">
+            <div class="number">02</div>
+            <div>
+                <h3>逆勢回擊</h3>
+                <p>
+                    看準敵人的攻擊節奏，
+                    透過精準操作化解危機並進行反擊。
+                </p>
+            </div>
+        </div>
+
+        <div class="battle-item">
+            <div class="number">03</div>
+            <div>
+                <h3>聲骸協戰</h3>
+                <p>
+                    使用收集到的聲骸能力，
+                    為角色提供額外的戰鬥手段。
+                </p>
+            </div>
+        </div>
+
+        <div class="battle-item">
+            <div class="number">04</div>
+            <div>
+                <h3>角色切換</h3>
+                <p>
+                    在隊伍角色之間快速切換，
+                    配合不同角色技能建立連續攻勢。
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
 
 
-    <!-- 頁尾 -->
-    <footer>
+<!-- 平台 -->
+<section class="platform" id="platform">
 
-        <p>
-            <strong>鳴潮 Wuthering Waves</strong>
-        </p>
+    <div class="section-title">
+        <span>PLATFORMS</span>
+        <h2>遊戲平台</h2>
+        <p>在不同平台踏上屬於你的旅途</p>
+    </div>
 
-        <p>
-            本網站為非官方介紹頁面，僅供學習與展示使用。
-        </p>
+    <div class="platform-list">
+        <div class="platform-item">🖥️ Windows</div>
+        <div class="platform-item">📱 Android</div>
+        <div class="platform-item">📱 iOS</div>
+        <div class="platform-item">🍎 macOS</div>
+        <div class="platform-item">🎮 PlayStation 5</div>
+    </div>
 
-        <p>
-            Wuthering Waves © KURO GAMES. ALL RIGHTS RESERVED.
-        </p>
+    <a
+        class="btn"
+        href="https://wutheringwaves.kurogames.com/zh-tw/"
+        target="_blank"
+    >
+        前往鳴潮官方網站
+    </a>
 
-    </footer>
+</section>
 
-</body>
 
-</html>
+<!-- Footer -->
+<footer>
+    <p>
+        <strong>鳴潮 Wuthering Waves</strong>
+    </p>
+
+    <p>
+        本網站為《鳴潮》非官方介紹頁面，
+        遊戲相關著作權與商標權歸原權利人所有。
+    </p>
+
+    <p>
+        © KURO GAMES. All Rights Reserved.
+    </p>
+</footer>
+
+</body> </html>
